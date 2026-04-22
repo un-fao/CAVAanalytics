@@ -83,6 +83,7 @@ if (!requireNamespace("pak", quietly = TRUE)) install.packages("pak")
 pak::pkg_install("Risk-Team/CAVAanalytics")
 ```
 
+
 ## Why R (and not Python)?
 
 CAVAanalytics was built with R packages like `climate4R` and `tidyverse` to prioritize visualization. However, R lacks Python's out-of-memory parallel computation capabilities (via `xarray` + `dask`), which means CAVAanalytics relies on in-memory (RAM) processing. This can limit analysis of very large areas such as entire CORDEX domains. That said, CAVAanalytics was primarily designed for **country-level assessments** ([memory-efficient functions are also available](https://risk-team.github.io/CAVAanalytics/reference/index.html)).
