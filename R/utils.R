@@ -85,6 +85,92 @@
   .replace_prefix_before_anchor(path, resolved, "/data")
 }
 
+#' Build a shared raster template for chunk merging
+#' @noRd
+.chunk_merge_template <- function(rst_list) {
+  ref <- rst_list[[1]]
+  exts <- lapply(rst_list, terra::ext)
+  union_ext <- terra::ext(
+    min(vapply(exts, terra::xmin, numeric(1))),
+    max(vapply(exts, terra::xmax, numeric(1))),
+    min(vapply(exts, terra::ymin, numeric(1))),
+    max(vapply(exts, terra::ymax, numeric(1)))
+  )
+  aligned_ext <- terra::align(union_ext, ref, snap = "out")
+
+  template <- terra::rast(
+    aligned_ext,
+    resolution = terra::res(ref),
+    crs = terra::crs(ref),
+    nlyrs = terra::nlyr(ref)
+  )
+  names(template) <- names(ref)
+  template
+}
+
+#' Merge spatial chunks on a common raster grid
+#' @noRd
+.merge_chunk_rasters <- function(
+  rst_list,
+  verbose = TRUE,
+  method = "bilinear",
+  context = "chunk rasters"
+) {
+  if (length(rst_list) == 0) {
+    cli::cli_abort("Empty raster list provided")
+  }
+
+  rst_list <- Filter(Negate(is.null), rst_list)
+  if (length(rst_list) == 0) {
+    cli::cli_abort("No valid chunk rasters were produced for merge")
+  }
+
+  if (!all(vapply(rst_list, inherits, logical(1), what = "SpatRaster"))) {
+    cli::cli_abort("Chunk merge expects only {.cls SpatRaster} inputs")
+  }
+
+  ref <- rst_list[[1]]
+  same_layers <- vapply(rst_list, terra::nlyr, numeric(1)) == terra::nlyr(ref)
+  if (!all(same_layers)) {
+    cli::cli_abort("Cannot merge chunk rasters with different numbers of layers")
+  }
+
+  template <- .chunk_merge_template(rst_list)
+  if (verbose) {
+    cli::cli_alert_info(sprintf(
+      "Aligning %s to a shared raster template before merging",
+      context
+    ))
+  }
+
+  aligned <- lapply(rst_list, function(r) {
+    tryCatch(
+      terra::resample(r, template, method = method),
+      error = function(e) {
+        cli::cli_abort(
+          sprintf("Error resampling %s to the shared template: %s", context, e$message)
+        )
+      }
+    )
+  })
+
+  if (length(aligned) == 1) {
+    merged_raster <- aligned[[1]]
+  } else {
+    if (verbose) {
+      cli::cli_alert_info(sprintf("Merging %s...", context))
+    }
+    merged_raster <- tryCatch(
+      terra::mosaic(terra::sprc(aligned), fun = "mean"),
+      error = function(e) {
+        cli::cli_abort(sprintf("Error merging %s: %s", context, e$message))
+      }
+    )
+  }
+
+  setNames(merged_raster, names(ref))
+}
+
 #' Load model paths from thredds
 #' @noRd
 load_model_paths.thredds <- function(

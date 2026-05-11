@@ -226,74 +226,9 @@ load_data_and_projections <- function(
     dplyr::summarise(value = median(value, na.rm = T))
   # Merge the extracted rasters using `Reduce` and set their names
 
-  merge_rasters <- function(rst_list) {
-    if (length(rst_list) == 0) {
-      cli::cli_abort("Empty raster list provided")
-    }
-
-    # Remove NULL entries if any
-    rst_list <- Filter(Negate(is.null), rst_list)
-
-    # Determine the resolution of each raster in the list.
-    # sapply returns a 2×n matrix (x-res, y-res per raster); use unique rows
-    # of the transpose to detect mismatches across rasters.
-    resolutions <- tryCatch(
-      {
-        sapply(rst_list, terra::res)
-      },
-      error = function(e) {
-        cli::cli_abort(paste("Error getting raster resolutions:", e$message))
-      }
-    )
-
-    unique_res <- unique(t(resolutions))
-
-    # Check if all rasters have the same resolution
-    if (nrow(unique_res) > 1) {
-      common_res <- apply(unique_res, 2, max)
-      cli::cli_alert_warning(sprintf(
-        "Rasters have different resolutions. Resampling all to [%.6f, %.6f]",
-        common_res[1], common_res[2]
-      ))
-
-      rst_list <- lapply(rst_list, function(r) {
-        tryCatch(
-          {
-            terra::resample(
-              r,
-              terra::rast(
-                terra::ext(r),
-                resolution = common_res,
-                crs = terra::crs(r)
-              ),
-              method = "bilinear"
-            )
-          },
-          error = function(e) {
-            cli::cli_abort(paste("Error resampling raster:", e$message))
-          }
-        )
-      })
-    }
-
-    if (verbose) {
-      cli::cli_alert_info("Merging rasters...")
-    }
-    merged_raster <- tryCatch(
-      {
-        Reduce(function(x, y) terra::merge(x, y), rst_list)
-      },
-      error = function(e) {
-        cli::cli_abort(paste("Error merging rasters:", e$message))
-      }
-    )
-
-    setNames(merged_raster, names(rst_list[[1]]))
-  }
-
-  rasters_mean <- merge_rasters(rst_mean)
-  rasters_sd <- merge_rasters(rst_sd)
-  rasters_mbrs <- merge_rasters(rst_mbrs)
+  rasters_mean <- .merge_chunk_rasters(rst_mean, verbose = verbose, context = "mean chunk rasters")
+  rasters_sd <- .merge_chunk_rasters(rst_sd, verbose = verbose, context = "sd chunk rasters")
+  rasters_mbrs <- .merge_chunk_rasters(rst_mbrs, verbose = verbose, context = "member chunk rasters")
 
   # Clean up after merging
   rm(rst_mean, rst_sd, rst_mbrs, out_list)

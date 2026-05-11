@@ -201,72 +201,10 @@ load_data_and_model_biases <-
       dplyr::group_by(date, Var1, season) %>%
       dplyr::summarise(value = median(value, na.rm = T),
                        obs_value = median(obs_value, na.rm = T))
-    # Merge the extracted rasters using `Reduce` and set their names
-    merge_rasters <- function(rst_list) {
-      if (length(rst_list) == 0) {
-        cli::cli_abort("Empty raster list provided")
-      }
-
-      # Remove NULL entries if any
-      rst_list <- Filter(Negate(is.null), rst_list)
-
-      # Determine the resolution of each raster in the list
-      resolutions <- tryCatch(
-        {
-          sapply(rst_list, terra::res)
-        },
-        error = function(e) {
-          cli::cli_abort(paste("Error getting raster resolutions:", e$message))
-        }
-      )
-
-      # Check if all rasters have the same resolution
-      if (length(unique(resolutions)) > 1) {
-        cli::cli_alert_warning(sprintf(
-          "Rasters have different resolutions: %s. Resampling to %s",
-          paste(unique(resolutions), collapse = ", "),
-          max(resolutions)
-        ))
-
-        common_res <- max(resolutions)
-        rst_list <- lapply(rst_list, function(r) {
-          tryCatch(
-            {
-              terra::resample(
-                r,
-                terra::rast(
-                  terra::ext(r),
-                  resolution = common_res,
-                  crs = terra::crs(r)
-                ),
-                method = "mode"
-              )
-            },
-            error = function(e) {
-              cli::cli_abort(paste("Error resampling raster:", e$message))
-            }
-          )
-        })
-      }
-
-      # Merge rasters with progress indication
-      cli::cli_alert_info("Merging...")
-      merged_raster <- tryCatch(
-        {
-          Reduce(function(x, y) terra::merge(x, y), rst_list)
-        },
-        error = function(e) {
-          cli::cli_abort(paste("Error merging rasters:", e$message))
-        }
-      )
-
-      setNames(merged_raster, names(rst_list[[1]]))
-    }
-
     cli::cli_process_done()
 
-    rasters_mean <- merge_rasters(rst_mean)
-    rasters_mbrs <- merge_rasters(rst_mbrs)
+    rasters_mean <- .merge_chunk_rasters(rst_mean, verbose = verbose, context = "mean chunk rasters")
+    rasters_mbrs <- .merge_chunk_rasters(rst_mbrs, verbose = verbose, context = "member chunk rasters")
 
     # Crop and mask rasters
     rasters_mean <- terra::crop(rasters_mean, country_shp) %>%
