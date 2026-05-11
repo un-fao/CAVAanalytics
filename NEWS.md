@@ -10,6 +10,10 @@ output:
 ---
 
 
+## CAVAanalytics 4.0.6
+
+- Fixed a regression in HUB `data.path` rewriting for model paths loaded from the inventory. HUB path rewriting now correctly handles character vectors, restoring `load_data_hub()` support for CORDEX model loading with `data.path`.
+
 ## CAVAanalytics 4.0.5
 
 - Added `data.path` support to HUB loading. `load_data_hub` now accepts `data.path = NULL` and, when not provided, also checks a global `data.path` variable (and `options(data.path = ...)`). This path is used to rewrite only the prefix before `inventories/...` for inventory access and before `data/...` for model paths listed in the inventory. The same `data.path` pass-through was added to `load_data_and_climate_change_signal` and `load_data_and_projections` when `use_hub = TRUE`.
