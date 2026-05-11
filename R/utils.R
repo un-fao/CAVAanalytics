@@ -39,17 +39,24 @@
 #' Replace everything before an anchor path
 #' @noRd
 .replace_prefix_before_anchor <- function(path, new_root, anchor) {
-  if (!stringr::str_detect(path, stringr::fixed(anchor))) {
-    return(path)
-  }
-
   anchor_esc <- gsub("([][{}()+*^$|\\\\?.])", "\\\\\\1", anchor)
-  suffix <- sub(paste0("^.*(", anchor_esc, ".*)$"), "\\1", path)
-  if (!nzchar(suffix)) {
-    return(path)
+  has_anchor <- stringr::str_detect(path, stringr::fixed(anchor))
+  out <- path
+
+  if (!any(has_anchor, na.rm = TRUE)) {
+    return(out)
   }
 
-  paste0(.normalize_hub_root(new_root), suffix)
+  rewrite_idx <- which(!is.na(has_anchor) & has_anchor)
+  suffix <- sub(paste0("^.*(", anchor_esc, ".*)$"), "\\1", path[rewrite_idx])
+  valid_suffix <- !is.na(suffix) & nzchar(suffix)
+
+  out[rewrite_idx[valid_suffix]] <- paste0(
+    .normalize_hub_root(new_root),
+    suffix[valid_suffix]
+  )
+
+  out
 }
 
 #' Resolve inventory CSV path for HUB loading
