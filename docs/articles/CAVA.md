@@ -46,9 +46,9 @@ interactive platform designed for users who need climate and
 agricultural insights without the complexity of coding. It presents key
 data in a clear and intuitive format.
 
-[**CAVAanalytics**](https://risk-team.github.io/CAVAanalytics/): A
-powerful tool for users comfortable with R programming, providing direct
-access to climate model outputs and enabling the calculation of climate
+[**CAVAanalytics**](https://un-fao.github.io/CAVAanalytics/): A powerful
+tool for users comfortable with R programming, providing direct access
+to climate model outputs and enabling the calculation of climate
 indicators across multi-model ensembles.
 
 [**cavapy**](https://github.com/Risk-Team/cavapy/): Python library
@@ -92,7 +92,7 @@ CORDEX (Coordinated Regional Climate Downscaling Experiment). The
 outputs of these models are available for specific geographical areas
 around the world, called domains. More information about the data behind
 CAVA can be found
-[here](https://risk-team.github.io/CAVAanalytics/articles/Introduction.html).
+[here](https://un-fao.github.io/CAVAanalytics/articles/Introduction.html).
 
 ![Description of the CORDEX domains and their coverage](domains.png)
 

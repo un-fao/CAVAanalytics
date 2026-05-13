@@ -9,7 +9,7 @@ library(magrittr)
 ```
 
 In the [getting started
-article](https://risk-team.github.io/CAVAanalytics/articles/Introduction.html),
+article](https://un-fao.github.io/CAVAanalytics/articles/Introduction.html),
 we have already explored some of the fundamental features of
 CAVAanalytics. Now, let’s take our understanding to the next level as we
 delve into the full potential of CAVAanalytics.

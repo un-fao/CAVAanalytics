@@ -19,7 +19,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">CAVAanalytics</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.0.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.0.6</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +39,7 @@
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html"><span class="fa fa-file-code-o"></span> Functions</a></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Risk-team/CAVAanalytics/"><span class="fa fa-github fa-lg"></span> GitHub</a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/un-fao/CAVAanalytics/"><span class="fa fa-github fa-lg"></span> GitHub</a></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html"><span class="fa fas fa-history"></span> Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
@@ -69,7 +69,7 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://risk-team.github.io/CAVAanalytics/">CAVAanalytics</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://un-fao.github.io/CAVAanalytics/">CAVAanalytics</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span></code></pre></div>
 <p>The main purpose of CAVAanalytics is making the processing and
@@ -169,7 +169,10 @@ type ?IPCC_palette for more info</p>
 <p><img src="Introduction_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" width="576" style="display: block; margin: auto;"></p>
 <p>And we can apply linear regression to each pixel to assess the
 statistical significance of the yearly increase in the number of days
-with Tmax higher than 35 degrees Celsius.</p>
+with Tmax higher than 35 degrees Celsius. In these trend maps, the
+overlaid marker indicates <strong>no statistical significance</strong>
+(i.e., <code>p &gt;= 0.05</code>), while pixels without marker are
+significant.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/observations.html">observations</a></span><span class="op">(</span><span class="va">kenya_exmp</span>, season<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span>, uppert<span class="op">=</span><span class="fl">35</span>,trends<span class="op">=</span><span class="cn">T</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span><span class="fu"><a href="../reference/plotting.html">plotting</a></span><span class="op">(</span><span class="va">.</span>, plot_titles <span class="op">=</span> <span class="st">"Days/year"</span>, palette<span class="op">=</span><span class="fu"><a href="../reference/IPCC_palette.html">IPCC_palette</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"tmp"</span>, divergent <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>, legend_range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -337,7 +340,9 @@ common than looking at projected absolute values.</p>
 agreement in the sign of the change. Basically, with a threshold of 0.8,
 it means that if 80% of the models agree that the climate change signal
 is positive or negative, the pixel gets a score of 1. These results are
-visualized through a black dot.</p>
+visualized through a black dot. For climate change signal maps, the
+overlaid marker/hatching indicates <strong>lack of agreement</strong>
+among models (agreement below the selected threshold).</p>
 <p>When working with precipitation, it can be useful to look at the
 results in percentages. This can be done easily by specifying percentage
 as TRUE in climate_change_signal</p>
