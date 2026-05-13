@@ -212,7 +212,7 @@ load_model_paths.thredds <- function(
     error = function(e) {
       cli::cli_abort(
         c(
-          "x" = "Error establishing connection with servers. If the issue persist, flag it on our GitHub repo at https://github.com/Risk-Team/CAVAanalytics/issues"
+          "x" = "Error establishing connection with servers. If the issue persist, flag it on our GitHub repo at https://github.com/un-fao/CAVAanalytics/issues"
         )
       )
     }

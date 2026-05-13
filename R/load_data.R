@@ -125,7 +125,7 @@ load_model_data <- function(
           paste(
             "Error downloading",
             path.to.data,
-            "data. If the issue persists, flag it on our GitHub repo at https://github.com/Risk-Team/CAVAanalytics/issues\n",
+            "data. If the issue persists, flag it on our GitHub repo at https://github.com/un-fao/CAVAanalytics/issues\n",
             e$message
           )
         )

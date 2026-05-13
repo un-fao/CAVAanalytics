@@ -1,5 +1,17 @@
 # Changelog
 
+## CAVAanalytics 4.0.6
+
+- Fixed a regression in HUB `data.path` rewriting for model paths loaded
+  from the inventory. HUB path rewriting now correctly handles character
+  vectors, restoring
+  [`load_data_hub()`](https://un-fao.github.io/CAVAanalytics/reference/load_data_hub.md)
+  support for CORDEX model loading with `data.path`.
+- Fixed chunked raster merging for climate change signal, projections,
+  and model bias workflows. Spatial chunks are now aligned to one shared
+  template before merging, which avoids failures caused by differing
+  chunk origins or slight grid misalignment.
+
 ## CAVAanalytics 4.0.5
 
 - Added `data.path` support to HUB loading. `load_data_hub` now accepts

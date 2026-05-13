@@ -12,7 +12,7 @@
 
     tryCatch(
       {
-        url <- "https://api.github.com/repos/Risk-Team/CAVAanalytics/issues?labels=announcement&state=open&per_page=1"
+        url <- "https://api.github.com/repos/un-fao/CAVAanalytics/issues?labels=announcement&state=open&per_page=1"
         resp <- readLines(url, warn = FALSE)
         resp <- paste(resp, collapse = "")
         issues <- jsonlite::fromJSON(resp)

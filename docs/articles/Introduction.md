@@ -42,7 +42,7 @@ ISIMIP3 impact models will become available in the close future
 Below we are automatically downloading all CORDEX-CORE simulations
 alongside the observational dataset ERA5 for Kenya. As you can see, it
 is very simple. We will see how to work with locally available models in
-another vignette.  
+another vignette.\
 **Note that this process can take a while, depending on the size of the
 country and the number of years specified**
 
@@ -132,7 +132,9 @@ plotting(., plot_titles = "N.days > 35 °C", temporal=T, palette="black")
 
 And we can apply linear regression to each pixel to assess the
 statistical significance of the yearly increase in the number of days
-with Tmax higher than 35 degrees Celsius.
+with Tmax higher than 35 degrees Celsius. In these trend maps, the
+overlaid marker indicates **no statistical significance** (i.e.,
+`p >= 0.05`), while pixels without marker are significant.
 
 ``` r
 
@@ -256,9 +258,9 @@ bias correction:
 
 Since the data is already bias-corrected, you should **not** set
 `bias.correction = TRUE` when using functions like
-[`projections()`](https://risk-team.github.io/CAVAanalytics/reference/projections.md)
+[`projections()`](https://un-fao.github.io/CAVAanalytics/reference/projections.md)
 or
-[`climate_change_signal()`](https://risk-team.github.io/CAVAanalytics/reference/climate_change_signal.md)
+[`climate_change_signal()`](https://un-fao.github.io/CAVAanalytics/reference/climate_change_signal.md)
 with these datasets.
 
 In this specific case, it seems that the eqm method is working better
@@ -356,7 +358,9 @@ To notice that the function climate_change_signal also calculates the
 agreement in the sign of the change. Basically, with a threshold of 0.8,
 it means that if 80% of the models agree that the climate change signal
 is positive or negative, the pixel gets a score of 1. These results are
-visualized through a black dot.
+visualized through a black dot. For climate change signal maps, the
+overlaid marker/hatching indicates **lack of agreement** among models
+(agreement below the selected threshold).
 
 When working with precipitation, it can be useful to look at the results
 in percentages. This can be done easily by specifying percentage as TRUE

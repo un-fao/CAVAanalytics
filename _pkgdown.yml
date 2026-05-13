@@ -1,4 +1,4 @@
-url: https://risk-team.github.io/CAVAanalytics/
+url: https://un-fao.github.io/CAVAanalytics/
 template:
   bootstrap: 5
   bootswatch: flatly
@@ -26,7 +26,7 @@ navbar:
       href: reference/index.html
     - icon: fa fa-github fa-lg
       text: GitHub
-      href: https://github.com/Risk-team/CAVAanalytics/
+      href: https://github.com/un-fao/CAVAanalytics/
     - icon: fas fa-history
       text: Changelog
       href: news/index.html

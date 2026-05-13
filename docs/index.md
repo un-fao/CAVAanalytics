@@ -3,13 +3,13 @@
 #### An R package for easy access, processing, and visualization of gridded climate products
 
 ![GitHub R package
-version](https://img.shields.io/github/r-package/v/Risk-Team/CAVAanalytics)![Release
-date](https://img.shields.io/github/release-date-pre/Risk-team/CAVAanalytics)[![DOI](https://zenodo.org/badge/558266668.svg)](https://zenodo.org/doi/10.5281/zenodo.11127220)
+version](https://img.shields.io/github/r-package/v/un-fao/CAVAanalytics)![Release
+date](https://img.shields.io/github/release-date-pre/un-fao/CAVAanalytics)[![DOI](https://zenodo.org/badge/558266668.svg)](https://zenodo.org/doi/10.5281/zenodo.11127220)
 
 ------------------------------------------------------------------------
 
 > **Check [GitHub
-> Issues](https://github.com/Risk-Team/CAVAanalytics/issues) for known
+> Issues](https://github.com/un-fao/CAVAanalytics/issues) for known
 > server downtimes**
 
 > **New:** Bias-corrected CORDEX-CORE simulations (ISIMIP methodology)
@@ -20,7 +20,7 @@ date](https://img.shields.io/github/release-date-pre/Risk-team/CAVAanalytics)[![
 
 ## Overview
 
-[**CAVAanalytics**](https://risk-team.github.io/CAVAanalytics/) is a
+[**CAVAanalytics**](https://un-fao.github.io/CAVAanalytics/) is a
 comprehensive R package designed to simplify climate data analysis. It
 provides a unified framework for accessing datasets such as W5E5, ERA5,
 and CORDEX-CORE models, enabling efficient loading, analysis, indicator
@@ -45,7 +45,7 @@ projected), compute the climate change signal, and visualize the
 projected change in total annual precipitation.
 
 Detailed examples are available in the
-[tutorial](https://risk-team.github.io/CAVAanalytics/articles/Introduction.html).
+[tutorial](https://un-fao.github.io/CAVAanalytics/articles/Introduction.html).
 
 ``` r
 
@@ -96,7 +96,7 @@ library(rJava)
 if (!requireNamespace("pak", quietly = TRUE)) install.packages("pak")
 
 # Install CAVAanalytics
-pak::pkg_install("Risk-Team/CAVAanalytics")
+pak::pkg_install("un-fao/CAVAanalytics")
 ```
 
 ## Why R (and not Python)?
@@ -108,7 +108,7 @@ CAVAanalytics relies on in-memory (RAM) processing. This can limit
 analysis of very large areas such as entire CORDEX domains. That said,
 CAVAanalytics was primarily designed for **country-level assessments**
 ([memory-efficient functions are also
-available](https://risk-team.github.io/CAVAanalytics/reference/index.html)).
+available](https://un-fao.github.io/CAVAanalytics/reference/index.html)).
 
 For large-scale data retrieval, consider
 [**cavapy**](https://github.com/Risk-Team/cavapy), the Python companion
@@ -118,9 +118,9 @@ focused on efficient data access.
 
 Contributions are welcome — fork this repository and submit a PR. If you
 find CAVAanalytics useful, please consider [giving it a
-star](https://github.com/Risk-Team/CAVAanalytics/stargazers)!
+star](https://github.com/un-fao/CAVAanalytics/stargazers)!
 
 ## Issues
 
 Report bugs or problems
-[here](https://github.com/Risk-Team/CAVAanalytics/issues).
+[here](https://github.com/un-fao/CAVAanalytics/issues).
