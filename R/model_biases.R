@@ -68,8 +68,11 @@ model_biases <- function(data,
                                        duration,
                                        frequency)
 
-    # set parallel processing
-    future::plan(future::multisession, workers = n.sessions)
+    # Scope the backend to this function so it does not leak into the caller.
+    future::with(
+      future::plan(future.mirai::mirai_multisession, workers = n.sessions),
+      local = TRUE
+    )
 
     # filter data by season
     datasets <- filter_data_by_season.model_biases(datasets, season = sns)
@@ -115,4 +118,3 @@ model_biases <- function(data,
     do.call(rbind, lapply(data_list, `[[`, 3))
   ))
 }
-

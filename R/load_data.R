@@ -299,8 +299,11 @@ load_data <- function(
   xlim <- result$xlim
   ylim <- result$ylim
 
-  # Set up parallel processing
-  future::plan(future::multisession, workers = n.sessions)
+  # Scope the backend to this function so it does not leak into the caller.
+  future::with(
+    future::plan(future.mirai::mirai_multisession, workers = n.sessions),
+    local = TRUE
+  )
 
   # Process model data
   models_df <- if (!is.null(path.to.data)) {
@@ -398,9 +401,6 @@ load_data <- function(
     df <- df %>%
       dplyr::mutate(models_mbrs = purrr::map(models_mbrs, ~ common_dates(.x)))
     cli::cli_progress_done()
-
-    # Shut down parallel workers to free memory
-    future::plan(future::sequential)
 
     df
   } else {

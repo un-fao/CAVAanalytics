@@ -47,8 +47,11 @@ climate_change_signal <- function(data,
   # calculate the differences between consecutive dates to understand temporal resolution
   diffs <- diff(dates)
 
-  # set parallel processing
-  future::plan(future::multisession, workers = n.sessions)
+  # Scope the backend to this function so it does not leak into the caller.
+  future::with(
+    future::plan(future.mirai::mirai_multisession, workers = n.sessions),
+    local = TRUE
+  )
 
   #create plots by season
   data_list <- purrr::map(season, function(sns) {
@@ -88,4 +91,3 @@ climate_change_signal <- function(data,
     temporal_data = do.call(rbind, lapply(data_list, `[[`, 5))
   ))
 }
-
