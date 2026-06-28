@@ -1,0 +1,12 @@
+Climate analysis often starts with days of data wrangling before the first useful map.
+
+CAVAanalytics is designed to shorten that path: load a country-level climate slice, compute an indicator, and explore the result as maps or time series in a few R calls.
+
+Example here: projected hot-day risk in Kenya using days above 35 C.
+
+The package handles remote CORDEX-CORE / ERA5 access, spatial subsetting, unit conversion, calendar harmonization, bias-corrected datasets, indicators, projections, and plotting.
+
+Code and docs:
+https://un-fao.github.io/CAVAanalytics/
+
+#ClimateData #RStats #ClimateRisk #OpenScience #CAVAanalytics
