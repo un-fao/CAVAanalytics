@@ -3,4 +3,5 @@
 .RData
 .Ruserdata
 test/
+.DS_Store
 
