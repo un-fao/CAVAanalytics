@@ -2,7 +2,7 @@
   # Show version
   packageStartupMessage(
     cli::format_message(
-      "{.pkg CAVAanalytics} v{packageVersion(pkgname)}"
+      "{.pkg CAVAanalytics} v{utils::packageVersion(pkgname)}"
     )
   )
 
