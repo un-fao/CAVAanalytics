@@ -10,6 +10,11 @@ output:
 ---
 
 
+## CAVAanalytics 4.0.7
+
+- Corrected the package license metadata to declare the Apache License 2.0 used by the project.
+
+
 ## CAVAanalytics 4.0.6
 
 - Fixed a regression in HUB `data.path` rewriting for model paths loaded from the inventory. HUB path rewriting now correctly handles character vectors, restoring `load_data_hub()` support for CORDEX model loading with `data.path`.
