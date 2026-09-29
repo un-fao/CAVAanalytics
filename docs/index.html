@@ -10,8 +10,8 @@
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="R package providing a framework for easy access, processing, and advanced visualization of gridded climate products">
-<meta name="description" content="CAVAanalytics is a comprehensive framework for climate data analysis, offering streamlined access to data, advanced processing and visualization capabilities. It is designed to support a wide range of climate research and user needs">
-<meta property="og:description" content="CAVAanalytics is a comprehensive framework for climate data analysis, offering streamlined access to data, advanced processing and visualization capabilities. It is designed to support a wide range of climate research and user needs">
+<meta name="description" content="CAVAanalytics is a comprehensive framework for climate data analysis, offering streamlined access to data, advanced processing and visualization capabilities. It is designed to support a wide range of climate research and user needs.">
+<meta property="og:description" content="CAVAanalytics is a comprehensive framework for climate data analysis, offering streamlined access to data, advanced processing and visualization capabilities. It is designed to support a wide range of climate research and user needs.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -21,7 +21,7 @@
 
     <a class="navbar-brand me-2" href="index.html">CAVAanalytics</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.0.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.0.7</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -335,7 +335,7 @@ An R package for easy access, processing, and visualization of gridded climate p
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>CAVAanalytics depends on <strong>rJava</strong>. If you are new to climate4R, install rJava first:</p>
+<p>CAVAanalytics depends on <strong>rJava</strong> (via climate4R / loadeR) and on spatial packages (<code>terra</code>, <code>sf</code>) that need GDAL / PROJ / GEOS.</p>
 <table class="table">
 <colgroup>
 <col width="43%">
@@ -352,22 +352,56 @@ An R package for easy access, processing, and visualization of gridded climate p
 </tr>
 <tr>
 <td><strong>Linux / macOS</strong></td>
-<td><a href="https://github.com/SantanderMetGroup/loadeR/wiki/Installation" class="external-link">Installing rJava on Linux and macOS</a></td>
+<td>
+<a href="https://github.com/SantanderMetGroup/loadeR/wiki/Installation" class="external-link">Installing rJava on Linux and macOS</a>; for <code>terra</code>/<code>sf</code> see <a href="https://r-spatial.github.io/sf/#installing" class="external-link">r-spatial install notes</a>
+</td>
+</tr>
+<tr>
+<td><strong>conda / mamba</strong></td>
+<td>Prefer installing Java and spatial stack from conda-forge (see below)</td>
 </tr>
 </tbody>
 </table>
-<p>Once rJava loads successfully in RStudio, install CAVAanalytics:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Verify rJava works</span></span>
+<div class="section level3">
+<h3 id="conda--mamba-recommended-on-macos">conda / mamba (recommended on macOS)<a class="anchor" aria-label="anchor" href="#conda--mamba-recommended-on-macos"></a>
+</h3>
+<p>Install system deps and binary R packages first so <code>pak</code> does not try to compile <code>terra</code>/<code>sf</code>/<code>rJava</code> from source:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">mamba</span> create <span class="at">-n</span> cava <span class="at">-c</span> conda-forge r-base r-rjava r-terra r-sf</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">mamba</span> activate cava</span></code></pre></div>
+<p>Then in that env’s R:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"pak"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pak"</span><span class="op">)</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"un-fao/CAVAanalytics"</span><span class="op">)</span></span></code></pre></div>
+<p><code>r-rjava</code> pulls <code>openjdk</code> automatically. With the env activated, <code>JAVA_HOME</code> is set for you.</p>
+</div>
+<div class="section level3">
+<h3 id="recommended-pak--system-r--rstudio">Recommended (pak) — system R / RStudio<a class="anchor" aria-label="anchor" href="#recommended-pak--system-r--rstudio"></a>
+</h3>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Verify rJava</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"rJava"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"rJava"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.rforge.net/rJava/" class="external-link">rJava</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Install pak if needed</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"pak"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pak"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Install CAVAanalytics</span></span>
-<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pkg_install.html" class="external-link">pkg_install</a></span><span class="op">(</span><span class="st">"un-fao/CAVAanalytics"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="co"># Install CAVAanalytics from GitHub</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"un-fao/CAVAanalytics"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="alternative-remotes">Alternative (remotes)<a class="anchor" aria-label="anchor" href="#alternative-remotes"></a>
+</h3>
+<p>GitHub’s source tarball is fairly large, so raise R’s download timeout first (default 60s is often too short):</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>timeout <span class="op">=</span> <span class="fl">600</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"rJava"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"rJava"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.rforge.net/rJava/" class="external-link">rJava</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"un-fao/CAVAanalytics"</span>, upgrade <span class="op">=</span> <span class="st">"never"</span><span class="op">)</span></span></code></pre></div>
 <hr>
+</div>
 </div>
 <div class="section level2">
 <h2 id="why-r-and-not-python">Why R (and not Python)?<a class="anchor" aria-label="anchor" href="#why-r-and-not-python"></a>
@@ -390,9 +424,7 @@ An R package for easy access, processing, and visualization of gridded climate p
   </main><aside class="col-md-3"><div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li>
-<a href="https://www.r-project.org/Licenses/GPL-2" class="external-link">GPL-2</a> | <a href="https://www.r-project.org/Licenses/GPL-3" class="external-link">GPL-3</a>
-</li>
+<li>Apache License (&gt;= 2)</li>
 </ul>
 </div>
 

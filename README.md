@@ -159,25 +159,58 @@ Data is hosted on the University of Cantabria THREDDS infrastructure.
 
 ## Installation
 
-CAVAanalytics depends on **rJava**. If you are new to climate4R, install rJava first:
+CAVAanalytics depends on **rJava** (via climate4R / loadeR) and on spatial packages (`terra`, `sf`) that need GDAL / PROJ / GEOS.
 
 | Platform | Instructions |
 |----------|-------------|
 | **Windows** | [Installing rJava on Windows](https://cimentadaj.github.io/blog/2018-05-25-installing-rjava-on-windows-10/installing-rjava-on-windows-10/) |
-| **Linux / macOS** | [Installing rJava on Linux and macOS](https://github.com/SantanderMetGroup/loadeR/wiki/Installation) |
+| **Linux / macOS** | [Installing rJava on Linux and macOS](https://github.com/SantanderMetGroup/loadeR/wiki/Installation); for `terra`/`sf` see [r-spatial install notes](https://r-spatial.github.io/sf/#installing) |
+| **conda / mamba** | Prefer installing Java and spatial stack from conda-forge (see below) |
 
-Once rJava loads successfully in RStudio, install CAVAanalytics:
+### conda / mamba (recommended on macOS)
+
+Install system deps and binary R packages first so `pak` does not try to compile `terra`/`sf`/`rJava` from source:
+
+```bash
+mamba create -n cava -c conda-forge r-base r-rjava r-terra r-sf
+mamba activate cava
+```
+
+Then in that env’s R:
 
 ```r
-# Verify rJava works
+if (!requireNamespace("pak", quietly = TRUE)) install.packages("pak")
+pak::pak("un-fao/CAVAanalytics")
+```
+
+`r-rjava` pulls `openjdk` automatically. With the env activated, `JAVA_HOME` is set for you.
+
+### Recommended (pak) — system R / RStudio
+
+```r
+# Verify rJava
 if (!requireNamespace("rJava", quietly = TRUE)) install.packages("rJava")
 library(rJava)
 
 # Install pak if needed
 if (!requireNamespace("pak", quietly = TRUE)) install.packages("pak")
 
-# Install CAVAanalytics
-pak::pkg_install("un-fao/CAVAanalytics")
+# Install CAVAanalytics from GitHub
+pak::pak("un-fao/CAVAanalytics")
+```
+
+### Alternative (remotes)
+
+GitHub’s source tarball is fairly large, so raise R’s download timeout first (default 60s is often too short):
+
+```r
+options(timeout = 600)
+
+if (!requireNamespace("rJava", quietly = TRUE)) install.packages("rJava")
+library(rJava)
+
+if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
+remotes::install_github("un-fao/CAVAanalytics", upgrade = "never")
 ```
 
 ---
