@@ -28,12 +28,20 @@ CONSTANTS <- list(
 #' then restores the original stream. Useful for silencing Java HTTP retry
 #' logs emitted by the Unidata/netCDF libraries.
 #'
+#' \code{loadeR.java} is loaded before the JVM starts. Its \code{.onLoad}
+#' sets \code{-Xmx} and the netCDF-Java classpath, and those settings are
+#' skipped once \code{rJava::.jinit()} has already started Java.
+#'
 #' @param expr An expression to evaluate while Java stderr is suppressed.
 #' @return The result of evaluating \code{expr}.
 #' @keywords internal
 with_java_quiet <- function(expr) {
-  # Ensure JVM is running before touching Java streams.
-  # .jinit() is a safe no-op when the JVM is already up.
+  # loadeR.java must be the code that starts the JVM. Calling .jinit()
+  # first makes its .onLoad warn and attach the netCDF jars at runtime.
+  if (!isNamespaceLoaded("loadeR.java")) {
+    loadNamespace("loadeR.java")
+  }
+  # .jinit() is a no-op once loadeR.java has started the JVM.
   rJava::.jinit()
   java_ps <- rJava::.jfield(
     "java/lang/System",
