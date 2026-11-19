@@ -17,13 +17,13 @@
 
 Soldan R, Manzanas R, Casanueva A (2026). *CAVAanalytics: R package
 providing a framework for easy access, processing, and advanced
-visualization of gridded climate products*. R package version 4.0.6,
+visualization of gridded climate products*. R package version 4.0.7,
 <https://un-fao.github.io/CAVAanalytics/>.
 
     @Manual{,
       title = {CAVAanalytics: R package providing a framework for easy access, processing, and advanced visualization of gridded climate products},
       author = {Riccardo Soldan and Rodrigo Manzanas and Ana Casanueva},
       year = {2026},
-      note = {R package version 4.0.6},
+      note = {R package version 4.0.7},
       url = {https://un-fao.github.io/CAVAanalytics/},
     }

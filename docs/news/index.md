@@ -1,5 +1,10 @@
 # Changelog
 
+## CAVAanalytics 4.0.7
+
+- Corrected the package license metadata to declare the Apache License
+  2.0 used by the project.
+
 ## CAVAanalytics 4.0.6
 
 - Fixed a regression in HUB `data.path` rewriting for model paths loaded
