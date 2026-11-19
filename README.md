@@ -10,6 +10,10 @@
   <a href="https://zenodo.org/doi/10.5281/zenodo.11127220"><img src="https://zenodo.org/badge/558266668.svg" alt="DOI"></a>
 </p>
 
+<p align="center">
+  <a href="https://github.com/un-fao/CAVAanalytics/stargazers">Star this project on GitHub</a>
+</p>
+
 ---
 
 > **Check [GitHub Issues](https://github.com/un-fao/CAVAanalytics/issues) for known server downtimes**

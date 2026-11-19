@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>More about CAVAanalytics • CAVAanalytics</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="More about CAVAanalytics">
 </head>
@@ -19,7 +19,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">CAVAanalytics</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.0.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.0.7</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -145,28 +145,28 @@ the mean historical maximum temperature for the whole year.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">kenya_obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/observations.html">observations</a></span><span class="op">(</span><span class="va">kenya_exmp</span>, season<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/plotting.html">plotting</a></span><span class="op">(</span><span class="va">kenya_obs</span>, plot_titles <span class="op">=</span> <span class="st">"°C"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" width="384" style="display: block; margin: auto;">
+<p><img src="Introduction_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="384" style="display: block; margin: auto;">
 If you want, you can also use pre-defined IPCC color palettes. You can
 type ?IPCC_palette for more info</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plotting.html">plotting</a></span><span class="op">(</span><span class="va">kenya_obs</span>, plot_titles <span class="op">=</span> <span class="st">"°C"</span>, </span>
 <span>palette <span class="op">=</span> <span class="fu"><a href="../reference/IPCC_palette.html">IPCC_palette</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"tmp"</span>, divergent <span class="op">=</span> <span class="cn">F</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" width="384" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="" width="384" style="display: block; margin: auto;"></p>
 <p>How many days above 35 °C occurred on average?</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">kenya_obs.35</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/observations.html">observations</a></span><span class="op">(</span><span class="va">kenya_exmp</span>, season<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span>, uppert<span class="op">=</span><span class="fl">35</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/plotting.html">plotting</a></span><span class="op">(</span><span class="va">kenya_obs.35</span>, plot_titles <span class="op">=</span> <span class="st">"Days &gt; 35 °C"</span>,  palette <span class="op">=</span> <span class="fu"><a href="../reference/IPCC_palette.html">IPCC_palette</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"tmp"</span>, divergent <span class="op">=</span> <span class="cn">F</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" width="384" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="" width="384" style="display: block; margin: auto;"></p>
 <p>You can also specify more than one season at a time</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/observations.html">observations</a></span><span class="op">(</span><span class="va">kenya_exmp</span>, season<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">7</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span>, uppert<span class="op">=</span><span class="fl">35</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span><span class="fu"><a href="../reference/plotting.html">plotting</a></span><span class="op">(</span><span class="va">.</span>, plot_titles <span class="op">=</span> <span class="st">"Days &gt; 35 °C"</span>, palette <span class="op">=</span> <span class="fu"><a href="../reference/IPCC_palette.html">IPCC_palette</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"tmp"</span>, divergent <span class="op">=</span> <span class="cn">F</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" width="576" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="" width="576" style="display: block; margin: auto;"></p>
 <p>You can also visualize the results as a temporal trend</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/observations.html">observations</a></span><span class="op">(</span><span class="va">kenya_exmp</span>, season<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">7</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span>, uppert<span class="op">=</span><span class="fl">35</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span><span class="fu"><a href="../reference/plotting.html">plotting</a></span><span class="op">(</span><span class="va">.</span>, plot_titles <span class="op">=</span> <span class="st">"N.days &gt; 35 °C"</span>, temporal<span class="op">=</span><span class="cn">T</span>, palette<span class="op">=</span><span class="st">"black"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" width="576" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="" width="576" style="display: block; margin: auto;"></p>
 <p>And we can apply linear regression to each pixel to assess the
 statistical significance of the yearly increase in the number of days
 with Tmax higher than 35 degrees Celsius. In these trend maps, the
@@ -176,7 +176,7 @@ significant.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/observations.html">observations</a></span><span class="op">(</span><span class="va">kenya_exmp</span>, season<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span>, uppert<span class="op">=</span><span class="fl">35</span>,trends<span class="op">=</span><span class="cn">T</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span><span class="fu"><a href="../reference/plotting.html">plotting</a></span><span class="op">(</span><span class="va">.</span>, plot_titles <span class="op">=</span> <span class="st">"Days/year"</span>, palette<span class="op">=</span><span class="fu"><a href="../reference/IPCC_palette.html">IPCC_palette</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"tmp"</span>, divergent <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>, legend_range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" width="384" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" alt="" width="384" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="model-biases">Model biases<a class="anchor" aria-label="anchor" href="#model-biases"></a>
@@ -198,7 +198,7 @@ historical experiments and ERA5.</p>
 <span></span>
 <span></span>
 <span><span class="va">a</span><span class="op">/</span><span class="va">b</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" width="960"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" alt="" width="960"></p>
 <p>As we can see, the biases are mainly positive, hence CORDEX-CORE
 models are warmer than the “observed” data. However, what happens if we
 bias correct the data? The results look much better now and mean biases
@@ -214,7 +214,7 @@ overfitting.</p>
 <span><span class="va">b</span><span class="op">=</span><span class="fu"><a href="../reference/plotting.html">plotting</a></span><span class="op">(</span><span class="va">bs_scaling</span>, plot_titles <span class="op">=</span>  <span class="st">"Biases in °C"</span>,legend_range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.09</span>,<span class="fl">0.09</span><span class="op">)</span>, ensemble <span class="op">=</span> <span class="cn">F</span> ,palette<span class="op">=</span><span class="fu"><a href="../reference/IPCC_palette.html">IPCC_palette</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"tmp"</span>, divergent <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">a</span><span class="op">/</span><span class="va">b</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" width="960"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" alt="" width="960"></p>
 <p>If we want to explore model biases biases on, let’s say, the number
 of very warm days (days with maximum temperature above 35 °C), then the
 choice of the bias-correction method is very important. Empirical
@@ -235,7 +235,7 @@ correct the data distribution.</p>
 <span><span class="va">c</span><span class="op">=</span><span class="fu"><a href="../reference/plotting.html">plotting</a></span><span class="op">(</span><span class="va">bias.eqm</span>, ensemble<span class="op">=</span><span class="cn">F</span>, legend_range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">40</span>,<span class="fl">40</span><span class="op">)</span>, palette <span class="op">=</span> <span class="fu"><a href="../reference/IPCC_palette.html">IPCC_palette</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"tmp"</span>, divergent <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>, plot_titles <span class="op">=</span> <span class="st">"Biases in N° days"</span><span class="op">)</span><span class="op">+</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"After bias correction-eqm method"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">a</span><span class="op">/</span><span class="va">b</span><span class="op">/</span><span class="va">c</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-12-1.png" class="r-plt" width="960"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-12-1.png" class="r-plt" alt="" width="960"></p>
 </div>
 <div class="section level2">
 <h2 id="pre-computed-bias-corrected-datasets">Pre-computed bias-corrected datasets<a class="anchor" aria-label="anchor" href="#pre-computed-bias-corrected-datasets"></a>
@@ -262,7 +262,7 @@ maximum temperature above 35 °C) as above.</p>
 <span><span class="va">biases_kenya_bc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/model_biases.html">model_biases</a></span><span class="op">(</span><span class="va">kenya_bc</span>, season<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span>, uppert<span class="op">=</span><span class="fl">35</span>, bias.correction <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/plotting.html">plotting</a></span><span class="op">(</span><span class="va">biases_kenya_bc</span>, ensemble<span class="op">=</span><span class="cn">F</span>, legend_range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">40</span>,<span class="fl">40</span><span class="op">)</span>, palette <span class="op">=</span> <span class="fu"><a href="../reference/IPCC_palette.html">IPCC_palette</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"tmp"</span>, divergent <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>, plot_titles <span class="op">=</span> <span class="st">"Biases in N° days"</span><span class="op">)</span><span class="op">+</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Pre-bias correcetd data with ISIMIP3b protocol"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" width="960"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" alt="" width="960"></p>
 <p>As shown above, the biases are more negligible than in the non
 bias-corrected data. This means you can directly use the data for
 projections and climate change signal analysis without needing to apply
@@ -287,10 +287,10 @@ though.</strong></p>
 <span><span class="va">proj_kenya</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/projections.html">projections</a></span><span class="op">(</span><span class="va">kenya_exmp</span>, season<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># stat can take either mean or sd. It is used in combination with ensemble=T. Default is always mean</span></span>
 <span><span class="fu"><a href="../reference/plotting.html">plotting</a></span><span class="op">(</span><span class="va">proj_kenya</span>, ensemble<span class="op">=</span><span class="cn">T</span>, stat<span class="op">=</span><span class="st">"mean"</span>, plot_titles <span class="op">=</span> <span class="st">"mean tasmax"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-15-1.png" class="r-plt" width="288" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-15-1.png" class="r-plt" alt="" width="288" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plotting.html">plotting</a></span><span class="op">(</span><span class="va">proj_kenya</span>, ensemble<span class="op">=</span><span class="cn">F</span>, stat<span class="op">=</span><span class="st">"mean"</span>, plot_titles <span class="op">=</span> <span class="st">"mean tasmax"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-16-1.png" class="r-plt" width="960"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-16-1.png" class="r-plt" alt="" width="960"></p>
 <p>In certain cases, focusing solely on mean temperatures might not
 provide the insights we need. Instead, we might be interested in
 understanding the frequency of specific conditions projected to occur.
@@ -300,7 +300,7 @@ temperatures above 35 °C.</p>
 <code class="sourceCode R"><span><span class="va">proj_kenya_35</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/projections.html">projections</a></span><span class="op">(</span><span class="va">kenya_exmp</span>, season<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">7</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span>, uppert<span class="op">=</span><span class="fl">35</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/plotting.html">plotting</a></span><span class="op">(</span><span class="va">proj_kenya_35</span>, ensemble<span class="op">=</span><span class="cn">T</span>,  legend_range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">180</span><span class="op">)</span>,</span>
 <span>plot_titles <span class="op">=</span> <span class="st">"N &gt; 35"</span>, palette<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"white"</span>, <span class="st">"orange"</span>, <span class="st">"red"</span>, <span class="st">"darkred"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-17-1.png" class="r-plt" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-17-1.png" class="r-plt" alt="" width="480" style="display: block; margin: auto;"></p>
 <p>If we remember, we assessed that there are model biases. Therefore,
 CAVAanalytics offers a straightforward solution by automatically
 implementing bias correction using the empirical quantile mapping method
@@ -313,20 +313,20 @@ selection of three bias-correction methods.</p>
 <span><span class="fu"><a href="../reference/plotting.html">plotting</a></span><span class="op">(</span><span class="va">proj_kenya_35bc</span>, ensemble<span class="op">=</span><span class="cn">T</span>,  </span>
 <span>plot_titles <span class="op">=</span> <span class="st">"N &gt; 35 bc"</span>, </span>
 <span>palette<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"white"</span>, <span class="st">"orange"</span>, <span class="st">"red"</span>, <span class="st">"darkred"</span><span class="op">)</span>, legend_range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">180</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-18-1.png" class="r-plt" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-18-1.png" class="r-plt" alt="" width="480" style="display: block; margin: auto;"></p>
 <p>The results can also be visualized for the annual time series (data
 is spatially aggregated).</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plotting.html">plotting</a></span><span class="op">(</span><span class="va">proj_kenya_35bc</span>, ensemble<span class="op">=</span><span class="cn">T</span>,  </span>
 <span>plot_titles <span class="op">=</span> <span class="st">"N &gt; 35 bc"</span>, temporal<span class="op">=</span><span class="cn">T</span>, palette<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"red"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-19-1.png" class="r-plt" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-19-1.png" class="r-plt" alt="" width="480" style="display: block; margin: auto;"></p>
 <p>and without spatial or temporal aggregation. In this case we are
 looking at the frequency distribution of the yearly data across all
 pixels</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plotting.html">plotting</a></span><span class="op">(</span><span class="va">proj_kenya_35bc</span>, ensemble<span class="op">=</span><span class="cn">T</span>,  </span>
 <span>plot_titles <span class="op">=</span> <span class="st">"N &gt; 35 bc"</span>, spatiotemporal<span class="op">=</span><span class="cn">T</span>, palette<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"red"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-20-1.png" class="r-plt" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-20-1.png" class="r-plt" alt="" width="480" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="climate-change-signal">Climate change signal<a class="anchor" aria-label="anchor" href="#climate-change-signal"></a>
@@ -352,11 +352,11 @@ as TRUE in climate_change_signal</p>
 <span><span class="fu"><a href="../reference/plotting.html">plotting</a></span><span class="op">(</span><span class="va">ccs_kenya</span>, plot_titles <span class="op">=</span> <span class="st">"Δ °C"</span>, </span>
 <span>legend_range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span>, </span>
 <span>palette <span class="op">=</span> <span class="fu"><a href="../reference/IPCC_palette.html">IPCC_palette</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"tmp"</span>, divergent <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-21-1.png" class="r-plt" width="960"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-21-1.png" class="r-plt" alt="" width="960"></p>
 <p>Anomalies can also be visualized for the annual time series</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plotting.html">plotting</a></span><span class="op">(</span><span class="va">ccs_kenya</span>, plot_titles <span class="op">=</span> <span class="st">"Annual Δ (°C)"</span>, temporal<span class="op">=</span><span class="cn">T</span>, palette<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"red"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-22-1.png" class="r-plt" width="576"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-22-1.png" class="r-plt" alt="" width="576"></p>
 </div>
 <div class="section level2">
 <h2 id="customise-plot-apperances">Customise plot apperances<a class="anchor" aria-label="anchor" href="#customise-plot-apperances"></a>
@@ -370,7 +370,7 @@ object</p>
 <span>legend_range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span>, </span>
 <span>palette <span class="op">=</span> <span class="fu"><a href="../reference/IPCC_palette.html">IPCC_palette</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"tmp"</span>, divergent <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>, point_size<span class="op">=</span><span class="fl">0.08</span><span class="op">)</span><span class="op">+</span></span>
 <span><span class="fu"><a href="../reference/remove_facets.html">remove_facets</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span> <span class="co"># remove facet text</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-23-1.png" class="r-plt" width="960"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-23-1.png" class="r-plt" alt="" width="960"></p>
 <p>We can also produce more complex plots, for example we can look at
 two time frames</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
@@ -398,7 +398,7 @@ two time frames</p>
 <span></span>
 <span><span class="co"># combine the plots and collect the legend. You need to have patchwork installed first </span></span>
 <span><span class="va">p1</span><span class="op">+</span><span class="va">p2</span><span class="op">+</span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html" class="external-link">plot_layout</a></span><span class="op">(</span>guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-24-1.png" class="r-plt" width="480"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-24-1.png" class="r-plt" alt="" width="480"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -411,7 +411,7 @@ two time frames</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>
